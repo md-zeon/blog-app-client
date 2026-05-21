@@ -94,7 +94,7 @@ const Navbar = ({
             <Link href={logo.url} className="flex items-center gap-2">
               <Image
                 src={logo.src}
-                className="max-h-8 dark:invert"
+                className="h-8 w-auto dark:invert"
                 width={20}
                 height={20}
                 alt={logo.alt}
@@ -129,7 +129,7 @@ const Navbar = ({
             <Link href={logo.url} className="flex items-center gap-2">
               <Image
                 src={logo.src}
-                className="max-h-8 dark:invert"
+                className="h-8 w-auto dark:invert"
                 width={20}
                 height={20}
                 alt={logo.alt}
@@ -147,7 +147,7 @@ const Navbar = ({
                     <Link href={logo.url} className="flex items-center gap-2">
                       <Image
                         src={logo.src}
-                        className="max-h-8 dark:invert"
+                        className="h-8 w-auto dark:invert"
                         width={20}
                         height={20}
                         alt={logo.alt}
