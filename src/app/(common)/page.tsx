@@ -1,7 +1,20 @@
 import { Button } from "@/components/ui/button";
+// import { cookies } from "next/headers";
 import Image from "next/image";
 
 export default async function Home() {
+  // const cookieStore = await cookies(); // Get the cookie from the browser
+  // console.log(cookieStore.get("better-auth.session_token"));
+  // const res = await fetch("http://localhost:5000/api/auth/get-session", {
+  //   headers: {
+  //     Cookie: cookieStore.toString(), // Pass the cookies to the backend
+  //   },
+  //   cache: "no-store", // Ensure we get the latest session data
+  // });
+
+  // const session = await res.json();
+  // console.log(session);
+
   return (
     <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
       <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
