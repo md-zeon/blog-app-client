@@ -3,9 +3,9 @@ import { userService } from "./services/user.service";
 import { Roles } from "./constants/roles";
 
 export async function proxy(req: NextRequest) {
-  console.log("Proxy middleware called for URL:", req.url);
+  // console.log("Proxy middleware called for URL:", req.url);
   const pathname = req.nextUrl.pathname;
-  console.log("Request pathname:", pathname);
+  // console.log("Request pathname:", pathname);
   let isAuthenticated = false;
   let isAdmin = false;
 
@@ -14,7 +14,7 @@ export async function proxy(req: NextRequest) {
   if (session) {
     isAuthenticated = true;
     isAdmin = session.user.role === Roles.admin;
-    console.log("User session:", session);
+    // console.log("User session:", session);
   } else {
     console.error("Error fetching session:", error?.message);
   }

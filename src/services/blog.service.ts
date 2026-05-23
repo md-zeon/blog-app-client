@@ -1,4 +1,5 @@
 import { env } from "@/env";
+import { cookies } from "next/headers";
 
 const API_URL = env.API_URL;
 
@@ -18,6 +19,12 @@ interface GetBlogPostsParams {
 interface ServiceOptions {
   cache?: RequestCache;
   revalidate?: number;
+}
+
+interface BlogData {
+  title: string;
+  content: string;
+  tags: string[];
 }
 
 export const blogService = {
@@ -45,6 +52,9 @@ export const blogService = {
       if (options?.revalidate) {
         config.next = { revalidate: options.revalidate };
       }
+
+      config.next = { ...config.next, tags: ["blog-posts"] }; // Add cache tags for invalidation
+
       const res = await fetch(url.toString(), config);
       const data = await res.json();
 
@@ -61,8 +71,34 @@ export const blogService = {
 
       return { data, error: null };
     } catch (error) {
-      console.error("Error fetching blog post:", error);
       return { data: null, error: "Failed to fetch blog post" };
+    }
+  },
+  createBlogPost: async function (blogData: BlogData) {
+    try {
+      const cookieStore = await cookies();
+      const res = await fetch(`${API_URL}/posts`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Cookie: cookieStore.toString(),
+        },
+        body: JSON.stringify(blogData),
+      });
+      const data = await res.json();
+
+      console.log("Create Blog Post Response:", res, "Data", data);
+
+      if (!res.ok) {
+        return {
+          data: null,
+          error: "Failed to create blog post",
+        };
+      }
+
+      return { data, error: null };
+    } catch (error) {
+      return { data: null, error: "Failed to create blog post" };
     }
   },
 };
