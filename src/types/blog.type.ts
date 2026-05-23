@@ -10,3 +10,15 @@ export interface BlogPost {
   };
   isFeatured?: boolean;
 }
+
+export interface Comment {
+  id: string;
+  postId: string;
+  authorId: string;
+  content: string;
+  parentId: string | null;
+  status: "APPROVED" | "DRAFT" | "REJECTED";
+  createdAt: string;
+  updatedAt: string;
+  replies?: Comment[];
+}

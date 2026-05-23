@@ -54,4 +54,15 @@ export const blogService = {
       return { data: null, error: "Failed to fetch blog posts" };
     }
   },
+  getBlogPostById: async function (id: string) {
+    try {
+      const res = await fetch(`${API_URL}/posts/${id}`);
+      const data = await res.json();
+
+      return { data, error: null };
+    } catch (error) {
+      console.error("Error fetching blog post:", error);
+      return { data: null, error: "Failed to fetch blog post" };
+    }
+  },
 };
