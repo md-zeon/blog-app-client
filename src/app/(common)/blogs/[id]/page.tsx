@@ -1,6 +1,15 @@
 import CommentItem from "@/components/modules/homepage/CommentItem";
 import { blogService } from "@/services/blog.service";
-import { Comment } from "@/types";
+import { BlogPost, Comment } from "@/types";
+
+export async function generateStaticParams() {
+  const { data } = await blogService.getBlogPosts();
+
+  // [{ id: "1" }, { id: "2" }, ...]
+  return data?.data?.map((post: BlogPost) => ({ id: post.id })); // Generate static paths for all blog posts
+}
+
+// export const dynamicParams = false; // Disable dynamic routes since we're pre-generating all paths
 
 const BlogDetailsPage = async ({
   params,
