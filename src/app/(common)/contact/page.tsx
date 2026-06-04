@@ -1,5 +1,6 @@
 "use client";
 import { getBlogs } from "@/actions/blog.action";
+import { ContactSection } from "@/components/contact-section";
 import React from "react";
 
 const ContactPage = () => {
@@ -14,7 +15,11 @@ const ContactPage = () => {
       setError(error);
     })();
   }, []);
-  return <div>Contact Page</div>;
+  return (
+    <div>
+      <ContactSection />
+    </div>
+  );
 };
 
 export default ContactPage;

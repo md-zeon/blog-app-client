@@ -3,6 +3,9 @@ import { blogService } from "@/services/blog.service";
 import { BlogPost } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
+import { BlogsSection } from "../../../components/blogs-section";
+import { TestimonialsSection } from "@/components/testimonials-section";
+import { Header } from "@/components/header";
 
 export default async function Home() {
   const featuredPostPromise = blogService.getBlogPosts({
@@ -44,6 +47,7 @@ export default async function Home() {
 
   return (
     <main className="max-w-7xl mx-auto px-4 py-8 space-y-16">
+      <Header />
       {/* Hero Section */}
       {heroPost && (
         <section className="relative rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900/50 transition-all hover:shadow-md">
@@ -147,6 +151,10 @@ export default async function Home() {
           <p className="text-neutral-500 py-4">No recent posts found.</p>
         )}
       </section>
+
+      <BlogsSection />
+
+      <TestimonialsSection />
     </main>
   );
 }
